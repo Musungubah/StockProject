@@ -58,5 +58,18 @@ class UserControllerTest {
 				e.printStackTrace();
 			}
 		}
+		
+		@Test
+		void testUserPresent() {
+//			User alex = new User("alex","pass",4);
+//			User tre =  new User("tre","pass",4);
+//			User ben =  new User("ben","pass",4);
+//			
+//		    List<User> allUser = Arrays.asList(alex, tre, ben);
+//		    BDDMockito.given(service.getAllUser()).willReturn(allUser);
+//		    
+//		    
+		    
+		}
 
 }

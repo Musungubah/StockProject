@@ -94,7 +94,6 @@ public class User  {
 	public void setEnabled(Integer enabled) {
 		this.enabled = enabled;
 	}
-
 	
 	
 
