@@ -33,4 +33,8 @@ public class PasswordVerify {
 		this.password = password;
 	}
 	
+	public void printUserinfo() {
+		System.out.println("This is the username: " + this.getUsername() + "\n This password: " + this.getPassword() );
+	}
+	
 }

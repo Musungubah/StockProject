@@ -16,9 +16,20 @@ public class LoginController {
 	@Autowired
 	private UserService userService;
 	
+	@PostMapping("/signup")
+	public void signUp(@RequestBody PasswordVerify userVerify) {
+		
+//		System.out.println("This is about to create a user: " + userVerify.getUsername());
+		
+		userVerify.printUserinfo();
+		
+		User user = new User(userVerify.getUsername(),userVerify.getPassword(),1);
+		userService.createAUser(user);
+	}
+	
+	
 	
 	@PostMapping("/authenticate")
-	@ResponseBody
 	public  boolean checkValidUser(@RequestBody PasswordVerify userVerify) {
 		
 		System.out.println(userVerify.getPassword());
