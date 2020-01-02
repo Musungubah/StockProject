@@ -8,6 +8,8 @@ import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
 
+import ch.qos.logback.core.joran.spi.NoAutoStart;
+
 @Entity
 @Table(name="stocks")
 public class Stock {
@@ -22,6 +24,30 @@ public class Stock {
 	private boolean dividend;
 	
 	
+	
+	
+	public Stock(Double price, String stocksymbol, String stockname, boolean dividend) {
+		super();
+		this.price = price;
+		this.stocksymbol = stocksymbol;
+		this.stockname = stockname;
+		this.dividend = dividend;
+	}
+
+	public Stock() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Stock(Long id, Double price, String stocksymbol, String stockname, boolean dividend) {
+		super();
+		this.id = id;
+		this.price = price;
+		this.stocksymbol = stocksymbol;
+		this.stockname = stockname;
+		this.dividend = dividend;
+	}
+
 	public Long getId() {
 		return id;
 	}
