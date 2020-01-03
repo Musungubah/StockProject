@@ -15,6 +15,7 @@ import ch.qos.logback.core.joran.spi.NoAutoStart;
 public class Stock {
 	
 	private static final long serialVersionUID = 1L;
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
@@ -22,9 +23,6 @@ public class Stock {
 	private String stocksymbol;
 	private String stockname;
 	private boolean dividend;
-	
-	
-	
 	
 	public Stock(Double price, String stocksymbol, String stockname, boolean dividend) {
 		super();
@@ -36,7 +34,6 @@ public class Stock {
 
 	public Stock() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Stock(Long id, Double price, String stocksymbol, String stockname, boolean dividend) {
