@@ -18,50 +18,38 @@ import bmm.arsenal.demo.service.UserService;
 import org.mockito.*;
 
 public class UserServiceTest {
-	
-	
-	@Mock private UserRepository userRepository;
-	@InjectMocks private UserService mockUserService = new UserService(userRepository);
-	@Mock private User user;
-	
-	
 
-	
+	@Mock
+	private UserRepository userRepository;
+	@InjectMocks
+	private UserService mockUserService = new UserService(userRepository);
+	@Mock
+	private User user;
+
 	@BeforeEach
 	public void setup() {
-//		MockitoAnnotations.initMocks(this);
-//		mockUserService = new UserService();
-//		
-//		User user = new User(1L, "bmusungu", "pass", 0);
-//		mockUserService
+
 		MockitoAnnotations.initMocks(this);
-		
-		//User addUser = new User(1L,"user","user",1);
-		//mockUserService.createAUser(addUser);
-		
-		
-		
+
 	}
-	
+
 	@Test
-	public void testMockCreation()
-	{
+	public void testMockCreation() {
 		assertNotNull(user);
 		assertNotNull(mockUserService);
 		assertNotNull(userRepository);
 	}
-	
-	
+
 	@Test
 	public void testForAUser() {
 //		User u = mockUserService.getAUserByUserName("user");
 //		Assertions.assertEquals(u.getUsername(),"user","The username was not retrieved correctly");
-		Mockito.when(mockUserService.getAUserByUserName("user")).thenReturn(new User(1L,"user","user",1));
-		
-		Assertions.assertEquals(mockUserService.getAUserByUserName("user").getUsername(),
-				"user","The username was not retrieved correctly");	
+		Mockito.when(mockUserService.getAUserByUserName("Bobuser")).thenReturn(new User(1L, "Bobuser", "user", 1));
+
+		Assertions.assertEquals(mockUserService.getAUserByUserName("Bobuser").getUsername(), "Bobuser",
+				"The username was not retrieved correctly");
 	}
 	
 	
-	
+
 }
