@@ -5,12 +5,16 @@ import java.util.Collection;
 import javax.annotation.Generated;
 import javax.persistence.*;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 //import org.springframework.security.core.GrantedAuthority;
 
 
 @Entity
 @Table(name="users")
-public class User  {
+public class User implements UserDetails  {
 	
 	/**
 	 * 
@@ -48,6 +52,9 @@ public class User  {
 		this.password = password;
 		//this.authorities = authorities;
 	}
+	
+	
+	
 /*
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -94,6 +101,37 @@ public class User  {
 	public void setEnabled(Integer enabled) {
 		this.enabled = enabled;
 	}
+
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean isAccountNonExpired() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 	
 	
 

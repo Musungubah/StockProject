@@ -5,7 +5,7 @@ DROP TABLE IF EXISTS stocks;
 CREATE  TABLE users (
   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   username VARCHAR(45) NOT NULL ,
-  password VARCHAR(45) NOT NULL ,
+  password VARCHAR(80) NOT NULL ,
   enabled TINYINT NOT NULL DEFAULT 1);
   
   
@@ -28,9 +28,9 @@ CREATE TABLE stocks(
 --  CONSTRAINT fk_username FOREIGN KEY (username) REFERENCES users (username));
   
 INSERT INTO users(id,username,password,enabled)
-VALUES (1,'bryan','musungu', true);
+VALUES (1,'bryan','password', true);
 INSERT INTO users(id,username,password,enabled)
-VALUES (2,'naveen','naveen', true);
+VALUES (2,'naveen','password', true);
 
 
 INSERT INTO stocks(id, price, stocksymbol, stockname, dividend) VALUES
