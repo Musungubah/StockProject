@@ -6,7 +6,7 @@ CREATE  TABLE users (
   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   username VARCHAR(45) NOT NULL ,
   password VARCHAR(80) NOT NULL ,
-  enabled TINYINT NOT NULL DEFAULT 1);
+  enabled TINYINT NOT NULL DEFAULT 0);
   
   
 CREATE TABLE stocks(
@@ -14,7 +14,7 @@ CREATE TABLE stocks(
 	price DECIMAL(13,2) NOT NULL, 
 	stocksymbol VARCHAR(45) NOT NULL,
 	stockname VARCHAR(45) NOT NULL,
-	dividend TINYINT NOT NULL DEFAULT 1
+	dividend TINYINT NOT NULL DEFAULT 0
 	
 );
 --  

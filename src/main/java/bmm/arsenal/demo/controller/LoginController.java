@@ -30,7 +30,7 @@ public class LoginController {
 		
 		String encryptPass = bCryptPasswordEncoder.encode(userVerify.getPassword());
 		
-		User user = new User(userVerify.getUsername(), encryptPass ,1);
+		User user = new User(userVerify.getUsername(), encryptPass ,0);
 		userService.createAUser(user);
 	}
 	

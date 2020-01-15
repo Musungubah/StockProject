@@ -1,11 +1,13 @@
 package bmm.arsenal.demo.model;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.annotation.Generated;
 import javax.persistence.*;
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
@@ -37,6 +39,8 @@ public class User implements UserDetails  {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
+	
 
 	public User(Long id, String username, String password, Integer enabled) {
 		super();
@@ -102,34 +106,43 @@ public class User implements UserDetails  {
 		this.enabled = enabled;
 	}
 
-	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
+	
+	public String[] getRoles() {
 		// TODO Auto-generated method stub
-		return null;
+		String[] myAuth = new String[] {"USER","ADMIN"};
+		return  myAuth;
 	}
 
 	@Override
 	public boolean isAccountNonExpired() {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 	@Override
 	public boolean isAccountNonLocked() {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 	@Override
 	public boolean isCredentialsNonExpired() {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 	@Override
 	public boolean isEnabled() {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+
+
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	
