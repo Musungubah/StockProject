@@ -1,6 +1,7 @@
 package bmm.arsenal.demo.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -15,15 +16,21 @@ public class LoginController {
 	
 	@Autowired
 	private UserService userService;
+	private BCryptPasswordEncoder bCryptPasswordEncoder;
 	
-	@PostMapping("/signup")
+
+	
+	@PostMapping("/users/signup")
 	public void signUp(@RequestBody PasswordVerify userVerify) {
 		
 //		System.out.println("This is about to create a user: " + userVerify.getUsername());
+		this.bCryptPasswordEncoder = new BCryptPasswordEncoder();
 		
 		userVerify.printUserinfo();
 		
-		User user = new User(userVerify.getUsername(),userVerify.getPassword(),1);
+		String encryptPass = bCryptPasswordEncoder.encode(userVerify.getPassword());
+		
+		User user = new User(userVerify.getUsername(), encryptPass ,0);
 		userService.createAUser(user);
 	}
 	

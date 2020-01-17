@@ -40,7 +40,7 @@ class UserControllerTest {
 	    private UserService service;
 
 		@Test
-		void test() {
+		void testController() {
 			User alex = new User("bmusungu","pass",4);
 			 
 		    List<User> allUser = Arrays.asList(alex);
