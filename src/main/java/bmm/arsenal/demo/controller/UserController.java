@@ -28,8 +28,7 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
-
-	
+//
 	@GetMapping
 	@ResponseBody
 	public List<User> getAllUser(){
