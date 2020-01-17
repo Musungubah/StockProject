@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.BDDMockito;
@@ -32,53 +31,39 @@ import bmm.arsenal.demo.model.Stock;
 import bmm.arsenal.demo.service.StockService;
 import bmm.arsenal.demo.service.UserService;
 
-
 @ExtendWith(SpringExtension.class)
 @WebMvcTest(StockController.class)
 class StockFactoryTest {
-	
-	
+
 	@Autowired
-    private MockMvc mvc;
- 
-    @MockBean
-    private StockService stockService;
-    
-    
+	private MockMvc mvc;
+
+	@MockBean
+	private StockService stockService;
 
 	@Test
 	public void test() {
-		
-		Stock stock1 = new Stock(1L,3.14,"BAC","bank of america", true);
-		Stock stock2 = new Stock(2L,3.14,"BAC","bank of america", true);
+
+		Stock stock1 = new Stock(1L, 3.14, "BAC", "bank of america", true);
+		Stock stock2 = new Stock(2L, 3.14, "BAC", "bank of america", true);
 		List<Stock> allStocks = new ArrayList<Stock>();
 		allStocks.add(stock1);
 		allStocks.add(stock2);
-		
+
 		BDDMockito.given(stockService.getAllStocks()).willReturn(allStocks);
-		
+
 		String testSymbol = allStocks.get(0).getStocksymbol();
-		
+
 		try {
-			
-			
-			mvc.perform(get("/stocklist")
-					  .contentType(MediaType.APPLICATION_JSON))
-					  .andExpect(status().isOk())
-					  .andExpect(jsonPath("$", hasSize(2)))
-					  .andExpect(jsonPath("$[0].stocksymbol", is(testSymbol)));
-			
+
+			mvc.perform(get("/stocklist").contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk())
+					.andExpect(jsonPath("$", hasSize(2))).andExpect(jsonPath("$[0].stocksymbol", is(testSymbol)));
+
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
 		}
-		
-		
-		
 
-		
 	}
-
-
 
 }
