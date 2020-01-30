@@ -50,7 +50,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 		
 		
         try {
-        	//System.out.println("Trying to authenticate the user: !!!!");
+        	
             PasswordVerify creds = new ObjectMapper()
             				.readValue(req.getInputStream(), PasswordVerify.class);
             
@@ -65,14 +65,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
            
             
             return authenticationManager.authenticate(op);
-            /*
-            System.out.println("Authenticatation: " + op.isAuthenticated());
-            return authenticationManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(
-                            creds.getUsername(),
-                            creds.getPassword(),
-                            new ArrayList<>())
-            );*/
+          
         } catch (IOException e) {
             throw new RuntimeException(e);
         }catch (AuthenticationException e) {
@@ -95,6 +88,10 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 	                .withExpiresAt(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
 	                .sign(HMAC512(SECRET.getBytes()));
 	        res.addHeader(HEADER_STRING, TOKEN_PREFIX + token);
+	        res.addHeader("Access-Control-Allow-Headers", "Authorization, X-PINGOTHER, Origin, X-Requested-With, Content-Type, Accept, X-Custom-header");
+	        
+	        System.out.println(res.toString());
+	        
 	    }
 
 }

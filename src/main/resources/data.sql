@@ -1,5 +1,7 @@
-DROP TABLE IF EXISTS users;
+
 DROP TABLE IF EXISTS stocks;
+DROP TABLE IF EXISTS users;
+--DROP TABLE IF EXISTS stocks;
 
 
 CREATE  TABLE users (
@@ -28,7 +30,7 @@ CREATE TABLE stocks(
 --  CONSTRAINT fk_username FOREIGN KEY (username) REFERENCES users (username));
   
 INSERT INTO users(id,username,password,enabled)
-VALUES (1,'bryan','password', true);
+VALUES (1,'bryan.musungu@gmail.com','password', true);
 INSERT INTO users(id,username,password,enabled)
 VALUES (2,'naveen','password', true);
 
