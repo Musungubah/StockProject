@@ -23,14 +23,12 @@ public class LoginController {
 	@PostMapping("/users/signup")
 	public void signUp(@RequestBody PasswordVerify userVerify) {
 		
-		System.out.println("This is about to create a user: " + userVerify.getUsername());
+//		System.out.println("This is about to create a user: " + userVerify.getUsername());
 		this.bCryptPasswordEncoder = new BCryptPasswordEncoder();
 		
 		userVerify.printUserinfo();
 		
-		//String encryptPass = bCryptPasswordEncoder.encode(userVerify.getPassword());
-		
-		String encryptPass = userVerify.getPassword();
+		String encryptPass = bCryptPasswordEncoder.encode(userVerify.getPassword());
 		
 		User user = new User(userVerify.getUsername(), encryptPass ,0);
 		userService.createAUser(user);

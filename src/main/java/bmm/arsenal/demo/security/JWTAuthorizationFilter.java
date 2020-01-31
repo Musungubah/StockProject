@@ -1,7 +1,6 @@
 package bmm.arsenal.demo.security;
 
 import java.io.IOException;
-import java.nio.file.attribute.UserPrincipal;
 import java.util.ArrayList;
 
 import javax.servlet.FilterChain;
@@ -9,7 +8,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -18,16 +16,11 @@ import org.springframework.security.web.authentication.www.BasicAuthenticationFi
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 
-import bmm.arsenal.demo.model.User;
-import bmm.arsenal.demo.repository.UserRepository;
-
 import static bmm.arsenal.demo.security.SecurityConstants.HEADER_STRING;
 import static bmm.arsenal.demo.security.SecurityConstants.TOKEN_PREFIX;
 import static bmm.arsenal.demo.security.SecurityConstants.SECRET;
 
 public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
-	@Autowired
-	UserRepository userRepository;
 	
 	public JWTAuthorizationFilter(AuthenticationManager authManager) {
         super(authManager);
@@ -38,13 +31,13 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
                                     HttpServletResponse res,
                                     FilterChain chain) throws IOException, ServletException {
         String header = req.getHeader(HEADER_STRING);
-       // System.out.println("My header: " + header);
+        System.out.println("My header: " + header);
         
         if (header == null || !header.startsWith(TOKEN_PREFIX)) {
             chain.doFilter(req, res);
             return;
         }
-        //System.out.println("Filter working on do filter!!!");
+        System.out.println("Filter working on do filter!!!");
         UsernamePasswordAuthenticationToken authentication = getAuthentication(req);
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
@@ -61,9 +54,7 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
                     .getSubject();
 
             if (user != null) {
-            	User currentuser = userRepository.findByusername(user);
-            	
-                return new UsernamePasswordAuthenticationToken(currentuser, null, currentuser.getAuthorities() );
+                return new UsernamePasswordAuthenticationToken(user, null, new ArrayList<>());
             }
             return null;
         }

@@ -30,12 +30,12 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         UserBuilder builder = null;
         
         if (applicationUser == null) {
-        	//System.out.println("User doesn't exist at all!!!s");
+        	System.out.println("User doesn't exist at all!!!s");
             return null;
         }
         
         
-        //System.out.println("Createing user detail service");
+        System.out.println("Createing user detail service");
         //String[] emptyArray = null;
         
         builder = org.springframework.security.core.userdetails.User.withUsername(username);
